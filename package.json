@@ -1,0 +1,22 @@
+{
+  "name": "nibot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nicodemos234/NiBot.git"
+  },
+  "author": "Nicodemos234",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nicodemos234/NiBot/issues"
+  },
+  "homepage": "https://github.com/Nicodemos234/NiBot#readme",
+  "dependencies": {
+    "discord.js": "^12.2.0"
+  }
+}
