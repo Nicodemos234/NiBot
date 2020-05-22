@@ -2,13 +2,13 @@ const fs = require('fs');
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
-const config = require('./config.json');
+const {prefix, token} = require('./config.json');
 
 client.on('ready', () => {
     console.log('O PAI TA ON!');
 });
 
-client.login(config.token);
+client.login(token);
 client.commands = new Discord.Collection();
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 
@@ -21,7 +21,7 @@ for (const file of commandFiles) {
 }
 
 client.on('message', (message) => {
-    if (!message.content.startsWith(config.prefix) || message.author.bot) return;
+    if (!message.content.startsWith(prefix) || message.author.bot) return;
 
     const args = message.content.slice(prefix.length).split(/ +/);
 	const command = args.shift().toLowerCase();
