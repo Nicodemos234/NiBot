@@ -1,4 +1,4 @@
-const ytdl = require('ytdl-core');
+/*const ytdl = require('ytdl-core');
 
 module.exports = {
 	name: 'play',
@@ -14,4 +14,4 @@ module.exports = {
             return;
         }
 	},
-};
+};*/

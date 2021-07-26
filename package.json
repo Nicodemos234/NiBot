@@ -18,8 +18,7 @@
   },
   "homepage": "https://github.com/Nicodemos234/NiBot#readme",
   "dependencies": {
-    "discord.js": "^12.2.0",
-    "node-opus": "^0.3.3",
-    "ytdl-core": "^2.1.2"
+    "discord.js": "latest",
+    "dotenv": "^10.0.0"
   }
 }
