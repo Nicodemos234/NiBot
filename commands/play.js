@@ -1,4 +1,3 @@
-/*const ytdl = require('ytdl-core');
 
 module.exports = {
 	name: 'play',
@@ -9,9 +8,6 @@ module.exports = {
             return;
         }
 
-        if(!message.member.voiceChannel){
-            message.channel.send("Entre em um canal de voz.");
-            return;
-        }
-	},
-};*/
+
+   	},
+};
