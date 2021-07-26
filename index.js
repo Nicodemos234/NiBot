@@ -38,7 +38,7 @@ fs.readdir("./commands/", (err, files) => {
 client.on("ready", () => {
     console.log(`${client.user.tag} is ready.`)
     const server = client.voice.connections.size
-    client.user.setActivity({ type: "PLAYING", name: `music on ${server} servers` })
+    client.user.setActivity({ type: "PLAYING", name: `música em ${server} servidores` })
 })
 
 client.on("message", async message => {
@@ -60,24 +60,24 @@ client.on("message", async message => {
 const status = queue => `Volume: \`${queue.volume}%\` | Filter: \`${queue.filter || "Off"}\` | Loop: \`${queue.repeatMode ? queue.repeatMode === 2 ? "All Queue" : "This Song" : "Off"}\` | Autoplay: \`${queue.autoplay ? "On" : "Off"}\``
 client.distube
     .on("playSong", (message, queue, song) => message.channel.send(
-        `${client.emotes.play} | Playing \`${song.name}\` - \`${song.formattedDuration}\`\nRequested by: ${song.user}\n${status(queue)}`
+        `${client.emotes.play} | Tocando \`${song.name}\` - \`${song.formattedDuration}\`\nQuem botou para tocar: ${song.user}\n${status(queue)}`
     ))
     .on("addSong", (message, queue, song) => message.channel.send(
-        `${client.emotes.success} | Added ${song.name} - \`${song.formattedDuration}\` to the queue by ${song.user}`
+        `${client.emotes.success} | Adicionado ${song.name} - \`${song.formattedDuration}\` para a fila por ${song.user}`
     ))
     .on("playList", (message, queue, playlist, song) => message.channel.send(
-        `${client.emotes.play} | Play \`${playlist.title}\` playlist (${playlist.total_items} songs).\nRequested by: ${song.user}\nNow playing \`${song.name}\` - \`${song.formattedDuration}\`\n${status(queue)}`
+        `${client.emotes.play} | Tocando \`${playlist.title}\` playlist (${playlist.total_items} músicas).\nRequisitado por: ${song.user}\nTocando: \`${song.name}\` - \`${song.formattedDuration}\`\n${status(queue)}`
     ))
     .on("addList", (message, queue, playlist) => message.channel.send(
-        `${client.emotes.success} | Added \`${playlist.title}\` playlist (${playlist.total_items} songs) to queue\n${status(queue)}`
+        `${client.emotes.success} | Adicionado \`${playlist.title}\` playlist (${playlist.total_items} músicas) a fila\n${status(queue)}`
     ))
     // DisTubeOptions.searchSongs = true
     .on("searchResult", (message, result) => {
         let i = 0
-        message.channel.send(`**Choose an option from below**\n${result.map(song => `**${++i}**. ${song.name} - \`${song.formattedDuration}\``).join("\n")}\n*Enter anything else or wait 60 seconds to cancel*`)
+        message.channel.send(`**Escolha uma opção a baixo**\n${result.map(song => `**${++i}**. ${song.name} - \`${song.formattedDuration}\``).join("\n")}\n*Digite qualquer outra coisa ou aguarde 60 segundos para cancelar*`)
     })
     // DisTubeOptions.searchSongs = true
-    .on("searchCancel", message => message.channel.send(`${client.emotes.error} | Searching canceled`))
-    .on("error", (message, err) => message.channel.send(`${client.emotes.error} | An error encountered: ${err}`))
+    .on("searchCancel", message => message.channel.send(`${client.emotes.error} | Pesquisa cancelada`))
+    .on("error", (message, err) => message.channel.send(`${client.emotes.error} | Aconteceu um erro: ${err}`))
 
 client.login(config.token)
