@@ -1,14 +1,13 @@
 const fs = require('fs');
 const Discord = require('discord.js');
 const client = new Discord.Client();
-
-const {prefix, token} = require('./config.json');
+require('dotenv').config();
 
 client.on('ready', () => {
     console.log('O PAI TA ON!');
 });
 
-client.login(token);
+client.login(process.env.token);
 client.commands = new Discord.Collection();
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 
@@ -22,9 +21,9 @@ for (const file of commandFiles) {
 
 client.on('message', (message) => {
     
-    if (!message.content.startsWith(prefix) || message.author.bot) return;
+    if (!message.content.startsWith(process.env.prefix) || message.author.bot) return;
 
-    const args = message.content.slice(prefix.length).split(/ +/);
+    const args = message.content.slice(process.env.prefix.length).split(/ +/);
 	const command = args.shift().toLowerCase();
 
     if(command === 'twitch'){
