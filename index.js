@@ -39,7 +39,8 @@ client.on('message', (message) => {
         case "play":
             const distube =  new Distube(client, {
             });
-            distube.play(message, args[0]);
+            let fullString = args.join(' ');
+            distube.play(message, fullString);
             break;
         case "menu":
             client.commands.get('menu').execute(message, args);
