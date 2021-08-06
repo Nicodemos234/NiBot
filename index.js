@@ -18,23 +18,27 @@ const config = {
 }
 
 client.config = config
-client.distube = new DisTube(client, { searchSongs: true, emitNewSongOnly: true, leaveOnFinish: true})
+client.distube = new DisTube(client, { searchSongs: true, emitNewSongOnly: true, leaveOnFinish: true })
 client.commands = new Discord.Collection()
 client.aliases = new Discord.Collection()
 client.emotes = config.emoji
 
-fs.readdir("./commands/", (err, files) => {
-    if (err) return console.log("Could not find any commands!")
-    const jsFiles = files.filter(f => f.split(".").pop() === "js")
-    if (jsFiles.length <= 0) return console.log("Could not find any commands!")
-    jsFiles.forEach(file => {
-        const cmd = require(`./commands/${file}`)
-        console.log(`Loaded ${file}`)
-        client.commands.set(cmd.name, cmd)
-        if (cmd.aliases) cmd.aliases.forEach(alias => client.aliases.set(alias, cmd.name))
+fs.readdir("./commands/", (err, folders) => {
+    folders.forEach(folder => {
+        fs.readdir(`./commands/${folder}/`, (err, files) => {
+
+            if (err) return console.log("Could not find any commands!")
+            const jsFiles = files.filter(f => f.split(".").pop() === "js")
+            if (jsFiles.length <= 0) return console.log("Could not find any commands!")
+            jsFiles.forEach(file => {
+                const cmd = require(`./commands/${folder}/${file}`)
+                console.log(`Loaded ${file}`)
+                client.commands.set(cmd.name, cmd)
+                if (cmd.aliases) cmd.aliases.forEach(alias => client.aliases.set(alias, cmd.name))
+            })
+        })
     })
 })
-
 client.on("ready", () => {
     console.log(`${client.user.tag} is ready.`)
     const server = client.voice.connections.size
