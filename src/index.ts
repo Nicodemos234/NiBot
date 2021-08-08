@@ -1,10 +1,13 @@
-const DisTube = require("distube")
-const Discord = require("discord.js")
-const client = new Discord.Client()
-const fs = require("fs")
+import * as DisTube from 'distube'
+import { Collection } from "discord.js"
+import { Client } from "@typeit/discord"
+import * as fs from 'fs'
+import { ClientConfig, MyClient } from './customTypes'
 require('dotenv').config()
 
-const config = {
+
+
+const config: ClientConfig = {
     "prefix": process.env.prefix,
     "token": process.env.token,
     "emoji": {
@@ -17,15 +20,17 @@ const config = {
     }
 }
 
+const client: MyClient = new Client()
+
 client.config = config
 client.distube = new DisTube(client, { searchSongs: true, emitNewSongOnly: true, leaveOnFinish: true })
-client.commands = new Discord.Collection()
-client.aliases = new Discord.Collection()
+client.commands = new Collection()
+client.aliases = new Collection()
 client.emotes = config.emoji
 
-fs.readdir("./commands/", (err, folders) => {
+fs.readdir("./build/commands/", (err, folders) => {
     folders.forEach(folder => {
-        fs.readdir(`./commands/${folder}/`, (err, files) => {
+        fs.readdir(`./build/commands/${folder}/`, (err, files) => {
 
             if (err) return console.log("Could not find any commands!")
             const jsFiles = files.filter(f => f.split(".").pop() === "js")

@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon index.js",
-    "start": "node index.js"
+    "dev": "concurrently \"yarn watch\" \"nodemon build/index.js\"",
+    "start": "yarn build && node build/index.js",
+    "watch": "tsc -w",
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
@@ -23,9 +25,13 @@
     "@discordjs/voice": "^0.5.5",
     "discord.js": "latest",
     "distube": "^2.8.15",
-    "dotenv": "^10.0.0"
+    "dotenv": "^10.0.0",
+    "typescript": "^4.3.5"
   },
   "devDependencies": {
+    "@typeit/discord": "^4.0.10",
+    "@types/node": "^16.4.13",
+    "concurrently": "^6.2.1",
     "nodemon": "^2.0.12"
   }
 }
