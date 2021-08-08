@@ -46,8 +46,8 @@ fs.readdir("./build/commands/", (err, folders) => {
 })
 client.on("ready", () => {
     console.log(`${client.user.tag} is ready.`)
-    const server = client.voice.connections.size
-    client.user.setActivity({ type: "PLAYING", name: `música em ${server} servidores` })
+    const server = client.guilds.cache.size
+    client.user.setActivity({ type: "PLAYING", name: `Existindo em ${server} servidores` })
 })
 
 client.on("message", async message => {
