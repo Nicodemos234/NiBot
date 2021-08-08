@@ -1,4 +1,4 @@
-const Discord = require("discord.js")
+import * as Discord from 'discord.js'
 
 module.exports = {
     name: "help",
